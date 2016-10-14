@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cast Screen</string>
+    <string name="casting_screen">Casting screen</string>
+    <string name="connected_to">Connected to %1$s</string>
+</resources>
