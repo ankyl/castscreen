@@ -4,15 +4,15 @@ allowing you to cast your Android device's screen to a Chromecast device.
 *Minimum API level:* 21
 
 ##Usage:
-0. Get an app id for a Remote Display Receiver from the [Google Cast developer console](https://cast.google.com/publish/). 
+0\. Clone the `castscreen` repository and [import it](https://developer.android.com/studio/projects/add-app-module.html#ImportAModule) as a module. Get an app id for a Remote Display Receiver from the [Google Cast developer console](https://cast.google.com/publish/). 
 You may need to add your Cast dongle as a test device, and wait ~15 minutes for changes to propagate in Google's servers.
 
-1. Extend `CastScreenActivity`:  
+1\. Extend `CastScreenActivity`:  
 ```java
 public class MainActivity extends CastScreenActivity
 ```
 
-2. In your `menu.xml` file, add the following item:
+2\. In your `menu.xml` file, add the following item:
 ```xml
 <item
     android:id="@+id/media_route_menu_item"
@@ -21,7 +21,7 @@ public class MainActivity extends CastScreenActivity
     app:showAsAction="always" />
 ```
 
-3. In your `Activity`'s `onCreateOptionsMenu`, call `super.prepareCastButton(castButtonMenuItem, YOUR_APP_ID)` like so:
+3\. In your `Activity`'s `onCreateOptionsMenu`, call `super.prepareCastButton(castButtonMenuItem, YOUR_APP_ID)` like so:
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
@@ -33,7 +33,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }
 ```
 
-4. Congratulations, you are done. The Cast button will appear in this activity, allowing users to cast their whole screen.
+4\. Congratulations, you are done. The Cast button will appear in this activity, allowing users to cast their whole screen.
 You will need to repeat steps 1-3 in any activity where you want the Cast button.
 
 ##How does it work?
