@@ -43,7 +43,7 @@ You can edit `R.layout.cast_screen_presentation` to add additional UI elements t
 
 ##Known Issues
 ####Sometimes the receiver shows up black and my logcat repeatedly has the lines `W/GCastSource: video RTT is high (___ ms)`?
-This is caused by a bug in the Remote display API. Please add a bug report [here](https://code.google.com/p/google-cast-sdk/issues/detail?id=957) and hopefully it will be fixed soon.
+This is caused by a bug in the Remote display API. If your global logcat repeatedly contains the phrase "video RTT is high", please post a bug report [here](https://code.google.com/p/google-cast-sdk/issues/detail?id=957). If your global logcat does not contain the above phrase, it may be a different issue, so please post to the castscreen issue tracker [here](https://github.com/ankyl/castscreen/issues).
 
 ##Bugs or feature requests?
 Please write it up on the issue tracker or submit a pull request. Thanks!
