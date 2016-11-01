@@ -165,26 +165,28 @@ public class ConnectionManager {
      * disconnect and cleanup all resources
      */
     public void disconnect() {
-        // Disconnect from remote display
-        PendingResult<CastRemoteDisplay.CastRemoteDisplaySessionResult> result =
-                CastRemoteDisplay.CastRemoteDisplayApi.stopRemoteDisplay(mApiClient);
-        result.setResultCallback(new ResultCallbacks<CastRemoteDisplay.CastRemoteDisplaySessionResult>() {
-            @Override
-            public void onSuccess(@NonNull CastRemoteDisplay.CastRemoteDisplaySessionResult castRemoteDisplaySessionResult) {
-                Log.i(TAG, "Success disconnecting from CastRemoteDisplayApi");
-            }
+        if (apiClientConnected()) {
+            // Disconnect from remote display
+            PendingResult<CastRemoteDisplay.CastRemoteDisplaySessionResult> result =
+                    CastRemoteDisplay.CastRemoteDisplayApi.stopRemoteDisplay(mApiClient);
+            result.setResultCallback(new ResultCallbacks<CastRemoteDisplay.CastRemoteDisplaySessionResult>() {
+                @Override
+                public void onSuccess(@NonNull CastRemoteDisplay.CastRemoteDisplaySessionResult castRemoteDisplaySessionResult) {
+                    Log.i(TAG, "Success disconnecting from CastRemoteDisplayApi");
+                }
 
-            @Override
-            public void onFailure(@NonNull Status status) {
-                Log.w(TAG, "Failed disconnecting from CastRemoteDisplayApi");
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Status status) {
+                    Log.w(TAG, "Failed disconnecting from CastRemoteDisplayApi");
+                }
+            });
+
+            // Disconnect from Google API
+            mApiClient.disconnect();
+        }
 
         // Stop listening for routes
         mRouter.removeCallback(mStopCallback);
-
-        // Disconnect from Google API
-        if (apiClientConnected()) mApiClient.disconnect();
 
         // Clean up MediaProjection resources
         if (mPresentation != null) mPresentation.dismiss();
