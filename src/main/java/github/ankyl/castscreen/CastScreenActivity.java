@@ -114,6 +114,11 @@ public abstract class CastScreenActivity extends AppCompatActivity {
         mAppId = appId;
 
         mRouter = MediaRouter.getInstance(getApplicationContext());
+
+        // Remove existing callback if present
+        if(mCallback != null)
+            mRouter.removeCallback(mCallback);
+
         mCallback = new MediaRouterCallback();
         mRouter.addCallback(mSelector, mCallback, MediaRouter.CALLBACK_FLAG_REQUEST_DISCOVERY);
     }
